@@ -105,8 +105,10 @@ def main():
         if line == "" or line.startswith("#") or line.startswith(";"):
             continue
         # Only add valid IPv4 addresses
-        if valid_ip_address(line) is True:
-            ips.append(line)
+        if "/" in line:
+            line = line.split("/")[0]
+            if valid_ip_address(line) is True:
+                ips.append(line)
     infile.close()
 
     for ip_address in ips:
